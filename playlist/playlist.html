@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playlist</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.js"></script>
+    <script type="text/javascript">
+      var lagu = ["[FerdyHakase] Orange.mp3","anne-marie-2002.mp3","Christopher x Hanin Dhiya - Heartbeat.mp3","Demi Lovato - Skyscraper Lyrics.mp3",
+      "Fiersa Besari ft Tantri - Waktu Yang Salah unofficial lirik video.mp3",
+      "Give Your Heart a Break - Demi Lovato lyrics.mp3","Judika - Jadi Aku Sebentar Saja (Official Music Video).mp3","Judika - Jikalau Kau Cinta (Official Music Video).mp3",
+      "Katy Perry - Roar.mp3","Katy Perry - Unconditionally (Official).mp3","Marshmello Ft Anne Marie FRIENDS.mp3","Million Dreams.mp3"];
+      var album = ["playlist1.jpg","playlist2.jpg","playlist3.jpg","playlist4.jpg","playlist5.jpg",
+      "playlist6.jpg","playlist7.jpg","playlist8.jpg","playlist10.jpg","playlist11.jpg","playlist12.jpg","playlist14.jpg"];
+
+      function FirstLoad() {
+        var playlist = document.getElementById('playlist');
+        for(var i = 0; i < lagu.length; i++) {
+          var element = "";
+          element += "<li class='list-group-item' ";
+          element += "onclick='Choose("+i+")'>";
+          element += lagu[i]+"</li>";
+          playlist.innerHTML += element;
+        }
+      }
+
+      function Choose(index) {
+        // digunakan untuk memutar lagu yang dipilih
+        // mengambil elemen audio
+        var audio = document.getElementById('audio');
+        // set source audio
+        audio.src = lagu[index];
+        audio.play();  // memutar audio
+
+        // mengambil elemen album
+        var picture = document.getElementById('album');
+        picture.src = album[index];
+        picture.style.width = "100%";
+      }
+
+      function Play() {
+        var audio = document.getElementById('audio');
+        audio.play();
+      }
+      function Pause() {
+        var audio = document.getElementById('audio');
+        audio.pause();
+      }
+      function Stop() {
+        var audio = document.getElementById('audio');
+        audio.pause();
+        audio.currentTime = 0;
+      }
+    </script>
+  </head>
+  <body onload="FirstLoad();">
+    <br>
+    <div class="container">
+      <div class="card col-sm-6">
+        <br>
+        <div class="card-header bg-success text-white">
+          <h4>Play List Javascript</h4>
+        </div>
+        <div class="card-body">
+          <!-- ini tampilan gambar -->
+          <div class="col-sm-12">
+            <img src="" class="img" id="album">
+          </div>
+
+          <!-- elemente audio -->
+          <br>
+          <audio controls id="audio">
+
+          </audio>
+
+          <!-- ini tampilan button -->
+          <br>
+          <div class="btn-group col-sm-6">
+            <button type="button" class="col-sm-4 btn btn-warning" onclick="Pause();">Pause</button>
+            <button type="button" class="col-sm-4 btn btn-success" onclick="Play();">Play</button>
+            <button type="button" class="col-sm-4 btn btn-danger" onclick="Stop();">Stop</button>
+          </div>
+
+          <!-- ini untuk list lagu  -->
+          <div class="col-sm-12 list-group" id="playlist">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
